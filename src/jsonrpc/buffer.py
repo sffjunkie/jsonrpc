@@ -18,7 +18,7 @@ class JSONBuffer(object):
     If a result handler is provided then it will be called with the list
     of messages whenever a complete message is received.
     """
-    def __init__(self, encoding='UTF-8'):
+    def __init__(self, result_handler=None, encoding='UTF-8'):
         self.messsages = []
 
         self._encoding = encoding
