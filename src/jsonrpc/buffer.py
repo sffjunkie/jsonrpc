@@ -13,14 +13,15 @@
 # limitations under the License.
 
 class JSONBuffer(object):
-    """A buffer for JSONRPC messages.
+    """A buffer for JSON messages.
 
     If a result handler is provided then it will be called with the list
     of messages whenever a complete message is received.
     """
-    def __init__(self):
+    def __init__(self, encoding='UTF-8'):
         self.messsages = []
 
+        self._encoding = encoding
         self._in_quote = False
         self._quote_char = ''
         self._bracket_count = 0
@@ -30,7 +31,7 @@ class JSONBuffer(object):
         """Append a string or a UTF-8 encoded string"""
 
         if not isinstance(data, str):
-            data = data.decode('UTF-8')
+            data = data.decode(self._encoding)
 
         pos = start = 0
         end = len(data)
