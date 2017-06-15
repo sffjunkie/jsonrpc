@@ -15,8 +15,5 @@
 class RPCError(Exception):
     pass
 
-class RPCResponseError(RPCError):
-    pass
-
 __version__ = '0.1'
 __author__ = 'Simon Kennedy <sffjunkie+code@gmail.com>'
