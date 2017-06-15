@@ -8,7 +8,7 @@ sys.path.insert(0, p)
 import pytest
 
 import json
-from jsonrpc.message import RPCRequest, RPCResponse, RPCMessageError
+from jsonrpc.message import RPCRequest, RPCResponse, RPCMessageError, RPCRequestError
 
 
 def test_Request_Kwargs():
@@ -93,7 +93,7 @@ def test_Response_Unmarshal_Object():
 
 
 def test_Response_UnmarshalError():
-    with pytest.raises(RPCMessageError):
+    with pytest.raises(RPCRequestError):
         response = RPCResponse()
         response.unmarshal(b'{"jsonrpc": "2.0", "result": null, "error": {"code": -32768, "message": "Bad id"}, "id": 1}')
 
@@ -102,6 +102,6 @@ def test_Response_UnmarshalErrorInfo():
     try:
         response = RPCResponse()
         response.unmarshal(b'{"jsonrpc": "2.0", "result": null, "error": {"code": -32768, "message": "Bad id"}, "id": 1}')
-    except RPCMessageError as exc:
+    except RPCRequestError as exc:
         assert exc.code == -32768
         assert exc.message == 'Bad id'
