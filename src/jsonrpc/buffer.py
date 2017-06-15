@@ -21,6 +21,7 @@ class JSONBuffer(object):
     def __init__(self, result_handler=None, encoding='UTF-8'):
         self.messsages = []
 
+        self._result_handler = result_handler
         self._encoding = encoding
         self._in_quote = False
         self._quote_char = ''
@@ -65,6 +66,8 @@ class JSONBuffer(object):
                         pos = -1
 
                         self.messsages.append(_data)
+                        if self._result_handler:
+                            self._result_handler(_data)
 
                     elif self._bracket_count < 0:
                         start = pos + 1

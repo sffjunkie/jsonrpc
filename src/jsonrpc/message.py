@@ -15,7 +15,7 @@
 import json
 import uuid
 
-from ..jsonrpc import RPCError
+from jsonrpc import RPCError
 
 __all__ = ['RPCMessageError', 'RPCRequest', 'RPCResponse']
 

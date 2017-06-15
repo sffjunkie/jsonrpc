@@ -16,8 +16,8 @@ import asyncio
 import aiohttp
 from functools import partial
 
-from mogul.jsonrpc import buffer
-from mogul.jsonrpc.message import RPCRequest, RPCResponse, RPCMessageError
+from jsonrpc import buffer
+from jsonrpc.message import RPCRequest, RPCResponse, RPCMessageError
 
 __all__ = ['RPCClient']
 
