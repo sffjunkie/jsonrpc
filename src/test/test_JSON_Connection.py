@@ -8,6 +8,8 @@ sys.path.insert(0, p)
 import pytest
 import asyncio
 
+pytest.importorskip('jsonrpc.client')
+
 from jsonrpc.client import RPCClient
 from jsonrpc.message import RPCRequest
 
@@ -67,6 +69,7 @@ def async_test(f):
 #        yield from conn.request(request)
 
 
+@pytest.mark.kodi
 @async_test
 def test_JSONConnection_Tcp_Introspect():
     conn = RPCClient(host='127.0.0.1', port=9090, method='tcp')
@@ -75,6 +78,7 @@ def test_JSONConnection_Tcp_Introspect():
     conn.close()
 
 
+@pytest.mark.kodi
 @async_test
 def test_JSONConnection_Tcp_Introspect_AttrAccess():
     conn = RPCClient(host='127.0.0.1', port=9090, method='tcp')
@@ -83,6 +87,7 @@ def test_JSONConnection_Tcp_Introspect_AttrAccess():
 #    pass
 
 
+@pytest.mark.kodi
 @async_test
 def test_JSONConnection_Tcp_Introspect_BadParameter():
     conn = RPCClient(host='127.0.0.1', port=9090, method='tcp')
